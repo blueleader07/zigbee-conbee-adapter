@@ -97,10 +97,10 @@ class ConBeeAdapter(Adapter):
             json_dict = self.rest.get_sensors()
             for k, v in json_dict.items():
                 uid = self.get_uid(v)
-                #if self.get_device(uid) != None:
-                 #   logging.info('Sensor device %s already exist. Will not crate a new device', uid);
-                  #  self.add_device_mapping('sensors', k, uid)
-                  #  continue
+                if self.get_device(uid) != None:
+                    logging.info('Sensor device %s already exist. Will not crate a new device', uid);
+                    self.add_device_mapping('sensors', k, uid)
+                    continue
                 for kk, vv in json_dict[k].items():
                     logging.info('Sensors: %s %s %s', k, kk, vv)
                 if json_dict[k]['type'].startswith('ZHAPresence'):

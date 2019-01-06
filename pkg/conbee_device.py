@@ -71,8 +71,6 @@ class ConBeeDevice(Device):
             for prop in ['bri', 'ct', 'dark', 'on', 'power', 'reachable', 'temperature', 'alarm']:
                 found = self.update_property_from_event(event['state'], prop)
                 if found == True:
-                    if prop == 'alarm':
-                        logging.info('Alarm needs to be reset')
                     handled = True
         if handled == False:
             logging.info('Unhandled event. event: %s', event)
