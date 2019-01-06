@@ -291,8 +291,7 @@ class ConBeeZHAAlarm(ConBeeAbstractSensor):
             val = state_config[prop]
             property = self.find_property(prop)
             property.set_device_value(val)
-            if prop.startswith('alarm'):
-                logging.info('Setting to false')
+            for prop in ['alarm']:
                 property.set_device_value(False)
             return True
         return False
