@@ -11,7 +11,7 @@ from conbee_property import ConBeeBooleanProperty, \
                             ConBeeLevelProperty, ConBeeMotionProperty, \
                             ConBeePushedProperty, ConBeeOnOffProperty, \
                             InstantaneousPowerProperty, ReachableProperty, \
-                            TemperatureProperty
+                            ConBeeAlarmProperty, TemperatureProperty
 
 class ConBeeDevice(Device):
     """ConBee device type."""
@@ -279,6 +279,7 @@ class ConBeeZHAAlarm(ConBeeAbstractSensor):
         self._context = 'https://iot.mozilla.org/schemas'
 
         logging.info('ConBeeZHAAlarm.__init__ %s', light)
+        self.add_property(ConBeeAlarmProperty(self, 'Alarm', 'alarm', lambda d, p : self.get_state_value('alarm', False)))
         self.add_property(ConBeeLevelProperty(self, 'Battery', 'battery',
                                               lambda d, p : self.property_path_value(self, 'config', p, 'battery')))
         #self.add_property(ReachableProperty(self))
