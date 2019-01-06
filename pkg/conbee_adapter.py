@@ -11,7 +11,8 @@ from conbee_config import Config
 from conbee_device import ConBeeDimmerButton, ConBeeZHATemperatureSensor, \
                           ConBeeZHAPresenceSensor, ConBee_0010_OnOff_plug_in_unit, \
                           ConBee_0100_Dimmable_light, \
-                          ConBee_0220_Color_temperature_light
+                          ConBee_0220_Color_temperature_light, \
+                          ConBeeZHAAlarm
 from deconz_rest_api import DeconzRestApi
 from ws_client import WsClient
 
