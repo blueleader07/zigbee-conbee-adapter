@@ -117,6 +117,11 @@ class ConBeeAdapter(Adapter):
                     self.add_device_mapping('sensors', k, uid)
                     logging.debug('Sensor %s added', k)
                     self.handle_device_added(device)
+                elif json_dict[k]['type'].startswith('ZHAAlarm'):
+                    device = ConBeeZHAAlarm(self, uid, str(k), json_dict[k])
+                    self.add_device_mapping('sensors', k, uid)
+                    logging.debug('Sensor %s added', k)
+                    self.handle_device_added(device)
                 else:
                     self.add_device_mapping('sensors', k, uid)
                     logging.info('Unknow sensor. Not added')

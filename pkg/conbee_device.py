@@ -263,6 +263,26 @@ class ConBeeZHAPresenceSensor(ConBeeAbstractSensor):
         #self.add_property(ReachableProperty(self))
         logging.info('Added ConBeeSensor %s', str(self.as_dict()))
 
+class ConBeeZHAAlarm(ConBeeAbstractSensor):
+    """ConBee sensor type."""
+
+    def __init__(self, adapter, _id, dev_id, light):
+        """
+        adapter -- the Adapter managing this device
+        _id -- ID of this device
+        dev_id -- id on the conbee device
+        light -- device info from ConBee request
+        """
+        ConBeeAbstractSensor.__init__(self, adapter, _id, dev_id, light)
+        self._type = ['PushButton']
+        self._context = 'https://iot.mozilla.org/schemas'
+
+        logging.info('ConBeeZHAAlarm.__init__ %s', light)
+        self.add_property(ConBeeLevelProperty(self, 'Battery', 'battery',
+                                              lambda d, p : self.property_path_value(self, 'config', p, 'battery')))
+        self.add_property(ReachableProperty(self))
+        logging.info('Added ConBeeSensor %s', str(self.as_dict()))
+
 class ConBeeDimmerButton(ConBeeAbstractSensor):
     """
     Dimmer sensor
