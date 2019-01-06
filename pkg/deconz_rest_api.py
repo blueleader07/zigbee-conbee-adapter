@@ -7,8 +7,6 @@ import logging
 import sys
 import traceback
 import urllib.request
-import asyncio
-import websockets
 
 class State:
     def __init__(self):
@@ -31,16 +29,6 @@ INTEGERS = ['bri', 'ct']
 class DeconzRestApi:
     def __init__(self, conbee_url):
         self.conbee_url = conbee_url
-        config = self.get_config()
-        log('config', config)
-        asyncio.get_event_loop().run_until_complete(
-            websockets.serve(echo, 'localhost', 443))
-        asyncio.get_event_loop().run_forever()
-
-    async def echo(websocket, path):
-        async for message in websocket:
-            logging.info('Woo', message)
-            #await websocket.send(message)
 
     def get_config(self):
         json_response = urllib.request.urlopen(self.conbee_url + '/config').read()
