@@ -191,21 +191,21 @@ class ConBeeColorTemperatureProperty(ConBeeProperty):
 
 class ConBeeMotionProperty(ConBeeProperty):
     def __init__(self, device, label, name, func_is):
-        desc = {'label': label, '@type': 'MotionProperty', 'type': 'boolean', 'readOnly': True, 'description': 'motion or not descripton'}
+        desc = {'label': label, '@type': 'MotionProperty', 'type': 'boolean', 'readOnly': True, 'description': 'motion or not description'}
         ConBeeProperty.__init__(self, device, name, desc, func_is=func_is)
         self.update()
         logging.info('Motion property to device %s', device.name)
 
 class ConBeeAlarmProperty(ConBeeProperty):
     def __init__(self, device, label, name, func_is):
-        desc = {'label': label, '@type': 'AlarmProperty', 'type': 'boolean', 'readOnly': True, 'description': 'alarm or not descripton'}
+        desc = {'label': label, '@type': 'AlarmProperty', 'type': 'boolean', 'readOnly': True, 'description': 'alarm or not description'}
         ConBeeProperty.__init__(self, device, name, desc, func_is=func_is)
         self.update()
         logging.info('Alarm property to device %s', device.name)
 
 class ConBeePushedProperty(ConBeeProperty):
     def __init__(self, device, func_is):
-        desc = {'label': 'Pushed', '@type': 'PushedProperty', 'type': 'integer', 'readOnly': True, 'description': 'pushed descripton'}
+        desc = {'label': 'Pushed', '@type': 'PushedProperty', 'type': 'integer', 'readOnly': True, 'description': 'pushed description'}
         ConBeeProperty.__init__(self, device, 'buttonevent', desc, func_is=func_is)
         self.update()
         logging.info('PushedProperty to device %s', device.name)

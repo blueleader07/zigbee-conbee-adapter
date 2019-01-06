@@ -285,6 +285,18 @@ class ConBeeZHAAlarm(ConBeeAbstractSensor):
         #self.add_property(ReachableProperty(self))
         logging.info('Added ConBeeSensor %s', str(self.as_dict()))
 
+    def update_property_from_event(self, state_config, prop):
+        # Return True if this property exist in event
+        if prop in state_config:
+            val = state_config[prop]
+            property = self.find_property(prop)
+            property.set_device_value(val)
+            if prop.startswith('alarm'):
+                logging.info('Setting to false')
+                property.set_device_value(False)
+            return True
+        return False
+
 class ConBeeDimmerButton(ConBeeAbstractSensor):
     """
     Dimmer sensor
