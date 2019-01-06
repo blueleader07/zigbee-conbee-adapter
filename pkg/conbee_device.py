@@ -71,6 +71,8 @@ class ConBeeDevice(Device):
             for prop in ['bri', 'ct', 'dark', 'on', 'power', 'reachable', 'temperature', 'alarm']:
                 found = self.update_property_from_event(event['state'], prop)
                 if found == True:
+                    if prop == 'alarm':
+                        logging.info('Alarm needs to be reset')
                     handled = True
         if handled == False:
             logging.info('Unhandled event. event: %s', event)
@@ -284,17 +286,6 @@ class ConBeeZHAAlarm(ConBeeAbstractSensor):
                                               lambda d, p : self.property_path_value(self, 'config', p, 'battery')))
         #self.add_property(ReachableProperty(self))
         logging.info('Added ConBeeSensor %s', str(self.as_dict()))
-
-    def update_property_from_event(self, state_config, prop):
-        # Return True if this property exist in event
-        if prop in state_config:
-            val = state_config[prop]
-            property = self.find_property(prop)
-            property.set_device_value(val)
-            for prop in ['alarm']:
-                property.set_device_value(False)
-            return True
-        return False
 
 class ConBeeDimmerButton(ConBeeAbstractSensor):
     """
