@@ -35,7 +35,7 @@
     "pkg/conbee_property.py",
     "pkg/deconz_rest_api.py",
     "pkg/util.py"
- ],
+  ],
   "moziot": {
     "api": {
       "min": 2,
@@ -68,14 +68,20 @@
         },
         "temperature": {
           "type": "string",
-          "enum": [ "Celsius", "Fahrenheit" ],
+          "enum": [
+            "Celsius",
+            "Fahrenheit"
+          ],
           "description": "Unit for temperature"
         },
         "log_level": {
           "type": "string",
-          "enum": [ "INFO", "DEBUG" ],
+          "enum": [
+            "INFO",
+            "DEBUG"
+          ],
           "description": "Log level. Use INFO as standard"
-       }
+        }
       }
     }
   }

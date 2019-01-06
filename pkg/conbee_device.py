@@ -60,6 +60,7 @@ class ConBeeDevice(Device):
         # {'state': {'reachable': False}, 't': 'event', 'e': 'changed', 'r': 'lights', 'id': '2'} 
         # {'id': '5', 'r': 'sensors', 'state': {'presence': True, 'dark': True, 'lastupdated': '2018-12-09T09:41:52'}, 'e': 'changed', 't': 'event'}
         # {'id': '5', 'r': 'sensors', 'e': 'changed', 'config': {'group': '58842', 'alert': 'none', 'duration': 60, 'battery': 60, 'reachable': True, 'delay': 60, 'on': True}, 't': 'event'}
+        # {'uniqueid': '28:6d:97:00:01:03:6c:83-01-0500', 'e': 'changed', 'r': 'sensors', 'state': {'lowbattery': False, 'lastupdated': '2019-01-06T22:45:03', 'alarm': True, 'tampered': False}, 'id': '3', 't': 'event'}
         handled = False
         if 'config' in event:
             for prop in ['battery', 'reachable']:
@@ -67,7 +68,7 @@ class ConBeeDevice(Device):
                 if found == True:
                     handled = True
         if 'state' in event:
-            for prop in ['bri', 'ct', 'dark', 'on', 'power', 'reachable', 'temperature']:
+            for prop in ['bri', 'ct', 'dark', 'on', 'power', 'reachable', 'temperature', 'alarm']:
                 found = self.update_property_from_event(event['state'], prop)
                 if found == True:
                     handled = True
