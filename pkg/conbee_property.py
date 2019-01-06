@@ -255,7 +255,7 @@ class TemperatureProperty(ConBeeProperty):
         """
         # return int(int(value) / 2.55)
         # (18°C × 9/5) + 32 = 64.4°F
-        if value == null
+        if value is None
             value = 0
         if self.unit_celsius:
             return (value / 100)
