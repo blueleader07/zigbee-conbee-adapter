@@ -280,7 +280,7 @@ class ConBeeZHAAlarm(ConBeeAbstractSensor):
         logging.info('ConBeeZHAAlarm.__init__ %s', light)
         self.add_property(ConBeeLevelProperty(self, 'Battery', 'battery',
                                               lambda d, p : self.property_path_value(self, 'config', p, 'battery')))
-        self.add_property(ReachableProperty(self))
+        #self.add_property(ReachableProperty(self))
         logging.info('Added ConBeeSensor %s', str(self.as_dict()))
 
 class ConBeeDimmerButton(ConBeeAbstractSensor):
